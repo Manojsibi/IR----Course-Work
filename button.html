@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="col">
+    <form class="mt-5" name="search" action="/search_results">
+      <div class="col-6 mx-auto input-group">
+        <input type="text" class="form-control" name="search" placeholder="Enter the Value">
+       
+      </div><br>
+<center>
+ <button type="submit" class="btn btn-success" style="color:black">Search</button>
+</center>
+    </form>    
+  </div>
+{% endblock %}

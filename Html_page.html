@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="container">
+   <div>
+      <form class="mt-5" name="search" action="/search_results">
+        <div class="col-5 mx-auto input-group">
+          <input type="text" class="form-control" name="search" value="{{ search_item }}">
+          
+        </div><br>
+<center>
+<button type="submit" class="btn btn-success" style="color:black">Search</button>
+</center>
+      </form>
+   </div>
+  </div>
+
+  <div class="col mt-5"></div>
+  
+  <div class="container" style="width: 500px">
+    {% if len(search_results) == 0 %}
+      <strong>No results found !!! </strong>
+    {% endif %}
+    {% for result in search_results %}
+      <div class="mt-3">
+        <div class="col">
+        <h3 style="font-size: 15px;font-weight: normal; ">
+            <a href="{{ result.paperUrl }}">{{ result.title }}</a>
+        </h3>
+            <div>
+                <span>
+                    <div style="color: #006621;font-size: 11px;font-family: Arial,sans-serif;
+                       overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                        {{result.publishedYear}} - {{result.authors}}
+                    </div>
+                    {% if len(description) == 0 %}
+                       <div style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                        {{ result.description }}
+                       </div>
+                    {% endif %}
+                    <div style="color: black;font-size: 11px;font-family: Arial,sans-serif;">
+                        Tag/Classification - {{ result.fingerprint }}
+                    </div>
+                </span>
+            </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
